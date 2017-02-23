@@ -12,9 +12,21 @@
 <p>
 <% @ideas.each do |idea| %> 
 <p><a href="/profile/<%= idea.user.id %>/<%= idea.id %>"><%= idea.user.alias %> </a> says: </p><textarea cols="100" rows="2"> <%= idea.content %> </textarea>
-<a href="/info_passon/<%= idea.id %>" type="hidden"></a>
-<a href="/ideas/likes/<%= idea.id %>"> Like </a> &nbsp;&nbsp;
-<a href="/ideas/<%= idea.id %>">people who</a> liked this
+ <% if idea.users_liked.include?(current_user) %>
+    <form action='/likes/<%= idea.find_like_id current_user%>' method='post'>
+      <input type='hidden' name='_method' value='delete'>
+      <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+      <input type='submit' value='Unlike'>
+    </form>
+  <% else %> 
+
+<form action='/likes_of_user' method='post'>
+      <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+      <input type='hidden' name='idea_id' value='<%= idea.id %>'>
+      <input type='submit' value='Like'>
+    </form>
+  <% end %> 
+<a href="/ideas/<%= idea.id %>"><%= idea.likes.count %> people</a> like this
 <% if current_user == idea.user %>
     			<form action='/ideas/<%= idea.id %>/destroy' method='post'>
       				<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>

@@ -20,7 +20,11 @@ Rails.application.routes.draw do
 
   get '/ideas/:id/'=>'ideas#show'
 
-  get '/info_passon/:id' =>'ideas#index'
+  post '/likes_of_user'=>'ideas#like'
+
+  delete '/likes/:id'=>'likes#destroy'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

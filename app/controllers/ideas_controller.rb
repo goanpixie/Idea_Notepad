@@ -5,8 +5,8 @@ class IdeasController < ApplicationController
   		@ideas = Idea.all
   		@likes=Like.all
 
-  		# @idea = Idea.find(params[:id])
-  		# @who_liked = Like.where(idea_id: @idea.id)
+  
+  	
 
   	end
 
@@ -25,7 +25,7 @@ class IdeasController < ApplicationController
 
 	def like
 		@user = User.find(session[:user_id])
-	    @idea = Idea.find(params[:id])
+	    @idea = Idea.find(params['idea_id'])
 	    @like = Like.create(user_id:@user.id, idea_id:@idea.id)
 
 	    redirect_to '/ideas' 
@@ -40,14 +40,6 @@ class IdeasController < ApplicationController
   		@who_liked = Like.where(idea_id: @idea)
 	end
 
-	def profile
-		@users=User.all
-  		@user =  User.find(session[:user_id])
-  		@ideas = Idea.all
-  		@ideas_of_user = Idea.where(user_id: @user)
-  		@likes = Like.all
-  		@who_liked = Like.where(idea_id = @ideas_of_user)
-  	end
 
 	def destroy
       idea = Idea.find(params[:id])

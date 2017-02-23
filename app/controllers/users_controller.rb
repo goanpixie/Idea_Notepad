@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   	@ideas = Idea.all
   	@ideas_of_user = Idea.where(user_id: @user)
   	@likes = Like.all
-  	@who_liked = Like.where(idea_id: @idea)	
+  	@who_liked = Like.where(idea_id: @ideas_of_user)	
 
   	end
 
