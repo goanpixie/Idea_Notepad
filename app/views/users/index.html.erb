@@ -1,0 +1,21 @@
+<a href="/ideas">Bright Ideas</a>	
+<fieldset>
+	<legend>Profile page</legend>
+	<p>
+		<label for="name">Name: <%=@user.name%> 
+		</label>
+	</p>
+	<p>
+		<label for="alias">Alias: <%= @user.alias%>
+		</label>
+	</p>
+	<p>
+		<label for="email">Email: <%= @user.email%>
+			
+		</label>
+		<hr>
+	</p>
+	<p>Number of posts: <%= @ideas_of_user.count %></p>
+	<p>Total number of likes: <%=@who_liked.count %></p>
+</fieldset>
+

@@ -1,0 +1,56 @@
+<h1>Welcome!</h1>
+
+<p><%= flash[:errors] %></p>
+
+<form action='/users' method='post'>
+  <fieldset>
+    <legend>Register:</legend>
+    	<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  		<p>
+    		<label for="name">Name</label>
+    		<input id="name" type="string" name="name" placeholder="Enter Name">
+  		</p> 
+  		<p>
+    		<label for="alias">Alias</label>
+    		<input id="alias" type="string" name="alias" placeholder="Enter Alias">
+  		</p> 
+  		<p>
+    		<label for="email">Email</label>
+    		<input id="email" type="email" name="email" placeholder="Enter Email">
+  		</p>
+    		
+ 
+  		<p>
+    		<label for="password">Password</label>
+    		<input id="password" type="password" name="password" placeholder="Enter password">
+  		</p>
+  		<p>*Password should be atleast 8 characters</p>
+  		<p>
+    		<label for="password_confirmation">Password Confirmation</label>
+    		<input id="password_confirmation" type="password" name="password_confirmation" placeholder="Enter password">
+  		</p> 
+  	<button type="submit">Register</button>
+
+    
+  </fieldset>
+</form>
+
+<form action='/users/login' method='post' role="form" >
+  <fieldset>
+    <legend>Login:</legend>
+
+    	<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+				<p>
+    				<label for="email">Email</label>
+    				<input id="email" name="email" placeholder="Enter email">
+  				</p>
+				<p>
+    				<label for="password">Password</label>
+    				<input id="password" type="password" name="password" placeholder="Enter password">
+  				</p>
+		<button type="submit">Login</button>
+
+	</fieldset>
+</form>
+
+

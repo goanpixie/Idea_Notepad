@@ -1,0 +1,26 @@
+<h1>Welcome <%= @user.alias %>!</h1>
+
+<form action="/ideas" method="post">
+	<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+			
+    		<label for="content"></label>
+    		<input id="content" type="text" name="content" placeholder="Post something witty here!">
+  			
+
+			<button type="submit">Idea!</button>
+</form>
+<p>
+<% @ideas.each do |idea| %> 
+<p><a href="/profile/<%= idea.user.id %>/<%= idea.id %>"><%= idea.user.alias %> </a> says: </p><textarea cols="100" rows="2"> <%= idea.content %> </textarea>
+<a href="/info_passon/<%= idea.id %>" type="hidden"></a>
+<a href="/ideas/likes/<%= idea.id %>"> Like </a> &nbsp;&nbsp;
+<a href="/ideas/<%= idea.id %>">people who</a> liked this
+<% if current_user == idea.user %>
+    			<form action='/ideas/<%= idea.id %>/destroy' method='post'>
+      				<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+      				<input type='hidden' name='_method' value='delete'>
+      				<input type='submit' value='Delete'>
+    			</form>
+ <% end %>
+ <% end %>
+ </p>
